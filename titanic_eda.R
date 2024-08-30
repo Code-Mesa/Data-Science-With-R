@@ -3,9 +3,9 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 
-# Load the Titanic dataset
-# Assuming the dataset is downloaded and saved as 'titanic.csv'
-titanic_data <- read.csv('titanic.csv')
+# Load the Titanic training dataset
+# Assuming the dataset is downloaded and saved as 'train.csv'
+titanic_data <- read.csv('train.csv')
 
 # View the first few rows of the dataset
 head(titanic_data)
@@ -17,12 +17,16 @@ summary(titanic_data)
 missing_values <- colSums(is.na(titanic_data))
 print(missing_values)
 
-# Handle missing values (for simplicity, we'll fill NAs in 'Age' with the median age)
+# Handle missing values
+# For simplicity, we'll fill NAs in 'Age' with the median age and 'Embarked' with the most frequent value
 titanic_data$Age[is.na(titanic_data$Age)] <- median(titanic_data$Age, na.rm = TRUE)
+titanic_data$Embarked[is.na(titanic_data$Embarked)] <- 'S'  # Most frequent value
 
-# Convert 'Survived' and 'Pclass' to factor variables for better analysis
+# Convert categorical variables to factors
 titanic_data$Survived <- as.factor(titanic_data$Survived)
 titanic_data$Pclass <- as.factor(titanic_data$Pclass)
+titanic_data$Sex <- as.factor(titanic_data$Sex)
+titanic_data$Embarked <- as.factor(titanic_data$Embarked)
 
 # Exploratory Data Analysis
 
