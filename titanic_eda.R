@@ -4,8 +4,8 @@ library(ggplot2)
 library(tidyr)
 
 # Load the Titanic training dataset
-# Assuming the dataset is downloaded and saved as 'train.csv'
-titanic_data <- read.csv('train.csv')
+# The 'train.csv' file is located in the 'titanic' folder
+titanic_data <- read.csv('titanic/train.csv')
 
 # View the first few rows of the dataset
 head(titanic_data)
